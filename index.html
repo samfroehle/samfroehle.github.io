@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Academic Profile</title>
+    <style>
+        :root {
+            --bg-color: #f4f6f8;
+            --card-bg: #ffffff;
+            --text-main: #2d3748;
+            --text-muted: #718096;
+            --accent-color: #ba0c2f; /* Crisp scarlet detail line */
+            --link-color: #3182ce;
+            --link-hover: #2b6cb0;
+            --border-radius: 12px;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+            padding: 3rem 1.5rem;
+        }
+
+        /* Webpage Layout Grid */
+        .wrapper {
+            max-width: 1050px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 320px 1fr;
+            gap: 2.5rem;
+            align-items: start;
+        }
+
+        /* --- LEFT SIDEBAR: PROFILE CARD --- */
+        .sidebar {
+            background: var(--card-bg);
+            border-radius: var(--border-radius);
+            padding: 2.5rem 2rem;
+            text-align: center;
+            box-shadow: var(--shadow);
+            border-top: 5px solid var(--accent-color);
+        }
+
+        .profile-photo {
+            width: 160px;
+            height: 160px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+        }
+
+        .name {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #1a202c;
+            line-height: 1.2;
+            margin-bottom: 0.5rem;
+        }
+
+        .institution {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 1.5rem;
+        }
+
+        .degrees {
+            background: #f8fafc;
+            border-radius: 8px;
+            padding: 0.8rem;
+            font-size: 0.9rem;
+            color: #4a5568;
+            margin-bottom: 2rem;
+            border-left: 3px solid var(--text-muted);
+        }
+
+        .degree-tag {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 0.2rem;
+        }
+
+        /* Primary Action Buttons */
+        .btn-stack {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.75rem 1rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: all 0.2s ease;
+        }
+
+        .btn-primary {
+            background-color: var(--text-main);
+            color: #fff;
+        }
+
+        .btn-primary:hover {
+            background-color: #1a202c;
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--link-color);
+            border: 2px solid var(--link-color);
+        }
+
+        .btn-secondary:hover {
+            background-color: #ebf8ff;
+            color: var(--link-hover);
+            border-color: var(--link-hover);
+        }
+
+
+        /* --- RIGHT MAIN CONTENT AREA --- */
+        .main-content {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .content-card {
+            background: var(--card-bg);
+            border-radius: var(--border-radius);
+            padding: 2.5rem;
+            box-shadow: var(--shadow);
+        }
+
+        h2 {
+            font-size: 1.4rem;
+            color: #1a202c;
+            margin-bottom: 1.2rem;
+            position: relative;
+            padding-bottom: 0.4rem;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 40px;
+            height: 3px;
+            background-color: var(--accent-color);
+            border-radius: 2px;
+        }
+
+        .about-text {
+            font-size: 1.1rem;
+            color: #4a5568;
+            line-height: 1.7;
+        }
+
+        /* Research Interests Grid */
+        .interests-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-top: 0.5rem;
+        }
+
+        .interest-item {
+            background: #f8fafc;
+            padding: 1rem;
+            border-radius: 8px;
+            font-weight: 500;
+            color: #4a5568;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            border: 1px solid #e2e8f0;
+        }
+
+        .interest-item::before {
+            content: "•";
+            color: var(--accent-color);
+            font-size: 1.5rem;
+            line-height: 0;
+        }
+
+        /* Lab Links Grid */
+        .labs-container {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .lab-card {
+            display: block;
+            text-decoration: none;
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            padding: 1.25rem 1.5rem;
+            border-radius: 8px;
+            transition: all 0.2s ease;
+        }
+
+        .lab-card:hover {
+            transform: translateX(5px);
+            border-color: var(--link-color);
+            background: #fff;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+        }
+
+        .lab-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--link-color);
+            margin-bottom: 0.25rem;
+        }
+
+        .lab-meta {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+
+        /* --- RESPONSIVE RESPONSIVENESS (Mobile/Tablet) --- */
+        @media (max-width: 850px) {
+            .wrapper {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            body {
+                padding: 1.5rem 1rem;
+            }
+            .sidebar {
+                padding: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="wrapper">
+        
+        <!-- LEFT SIDEBAR: Personal Identity Block -->
+        <aside class="sidebar">
+            <!-- Her Profile Image Asset -->
+            <img src="profile.jpg" alt="Profile Photo" class="profile-photo">
+            
+            <h1 class="name">Jane Doe</h1>
+            <p class="institution">The Ohio State University</p>
+            
+            <div class="degrees">
+                <span class="degree-tag">B.S. Psychology</span>
+                <span class="degree-tag">B.S. Statistics</span>
+            </div>
+
+            <!-- Call to Actions / External Links -->
+            <div class="btn-stack">
+                <a href="resume.pdf" class="btn btn-primary" target="_blank">View CV / Resume (PDF)</a>
+                <a href="https://linkedin.com/in/username" class="btn btn-secondary" target="_blank">Connect on LinkedIn</a>
+            </div>
+        </aside>
+
+        <!-- RIGHT AREA: Content Display -->
+        <main class="main-content">
+            
+            <!-- ABOUT SECTION -->
+            <section class="content-card">
+                <h2>About</h2>
+                <p class="about-text">
+                    I am a rising senior at Ohio State University blending behavioral theory with rigorous quantitative methodologies. My background spans psychological mechanisms and statistical modeling, which drives my focus toward understanding how data-driven architectures shape consumer behavior. I am actively preparing for PhD opportunities in Marketing to further explore these intersections.
+                </p>
+            </section>
+
+            <!-- RESEARCH INTERESTS SECTION -->
+            <section class="content-card">
+                <h2>Research Interests</h2>
+                <div class="interests-grid">
+                    <div class="interest-item">Consumer Judgment & Decision Making</div>
+                    <div class="interest-item">Quantitative Marketing Models</div>
+                    <div class="interest-item">Behavioral Economics</div>
+                    <div class="interest-item">Choice Architecture</div>
+                </div>
+            </section>
+
+            <!-- LAB AFFILIATIONS SECTION -->
+            <section class="content-card">
+                <h2>Research Labs</h2>
+                <p style="color: var(--text-muted); margin-bottom: 1.2rem; font-size: 0.95rem;">
+                    Proudly affiliated with the following research groups at Ohio State:
+                </p>
+                <div class="labs-container">
+                    
+                    <!-- Lab 1 Link Card -->
+                    <a href="https://psychology.osu.edu/research/lab-one" class="lab-card" target="_blank">
+                        <div class="lab-title">The Consumer Cognition & Decision Lab</div>
+                        <div class="lab-meta">Undergraduate Research Assistant • Department of Psychology</div>
+                    </a>
+
+                    <!-- Lab 2 Link Card -->
+                    <a href="https://psychology.osu.edu/research/lab-two" class="lab-card" target="_blank">
+                        <div class="lab-title">Quantitative Behavioral Analysis Group</div>
+                        <div class="lab-meta">Lab Assistant • Department of Psychology</div>
+                    </a>
+
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+</body>
+</html>
